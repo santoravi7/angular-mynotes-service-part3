@@ -70,6 +70,13 @@ export class NoteService {
     );
   }
 
+  updateNote (note: Notedata): Observable<any> {
+    return this.http.put(this.notesUrl, note, this.httpOptions).pipe(
+      tap(_ => this.log(`updated note id=${note.id}`)),
+      catchError(this.handleError<any>('updateNote'))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`NoteService: ${message}`);
   }

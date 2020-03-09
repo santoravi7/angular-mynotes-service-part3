@@ -1,11 +1,12 @@
 <div>
   <label>
     <input #noteName />
-    <input #noteColor />
-    <input #noteDescription />
+    <input #noteColor value="red" class="note-desc"/>
+    <input #noteDescription  value="desc" class="note-desc"/>
+    
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(noteName.value,noteColor.value,noteDescription.value); noteName.value='';noteColor.value='';noteDescription.value=''">
+  <button (click)="add(noteName.value,noteColor.value,noteDescription.value); noteName.value='';noteColor.value='';">
     add Note
   </button>
 </div>

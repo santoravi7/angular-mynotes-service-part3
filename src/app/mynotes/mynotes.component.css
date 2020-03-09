@@ -16,3 +16,7 @@
   font-family: lato;
   font-size: 12px;
 }
+
+.note-desc{
+  display: none;
+}

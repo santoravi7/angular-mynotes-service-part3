@@ -11,6 +11,17 @@ import { MessageService } from '../message.service';
 export class MynotesComponent implements OnInit {
 
   notes : Note[];
+  colors = [ 
+      {value : '#CD5C5C'},
+      {value : '#7DCEA0'},
+      {value : '#FFA406'},
+      {value : '#5D9EBC'},
+      {value : '#7B5DB0'},
+      {value : '#E82640'},
+      {value : '#18CFA0'}
+    ];
+  colorRandomVal;
+  colorVal;
 
   constructor(private noteService: NoteService) { }
 
@@ -23,10 +34,12 @@ export class MynotesComponent implements OnInit {
   }
   
   add(name: string, color: string, description: string): void {
+    
+    this.colorRandomVal = Math.floor(Math.random() * this.colors.length);  
     name = name.trim();
-    color = color;
+    color = this.colors[this.colorRandomVal].value;;
     description = description;
-    console.log("this is add"+color);
+    console.log("desc - "+description)
     if (!name) { return; }
     this.noteService.addNote({ name,description,color } as Note)
       .subscribe(note => {

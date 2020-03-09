@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
+import { Location } from '@angular/common';
+
 // import { notes } from '../notes'
 import { Note } from '../notedata';
 import { NoteService } from '../note.service';
@@ -17,6 +19,7 @@ export class NotesDescComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private noteService: NoteService,
+    private location: Location
     ) { }
 
 
@@ -35,5 +38,14 @@ export class NotesDescComponent implements OnInit {
       console.log("Inside the subscribe - note id = "+this.note)      
   }
   
+  goBack() : void {
+    this.location.back();
+  }
+
+  save(): void {
+    this.noteService.updateNote(this.note)
+      .subscribe(() => this.goBack());
+  }
+
 }
 

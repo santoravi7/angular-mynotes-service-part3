@@ -5,7 +5,11 @@
           <div class="note-heading">{{note.name}}</div>
           <div class="desc">
               <textarea [(ngModel)]='note.description'></textarea>
+              <div class="center">
+                <button class="save-btn" (click)="save()">Save</button>
+              </div>
           </div>
+          
         </div>
       </div>
     </div>
