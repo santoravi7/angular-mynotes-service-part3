@@ -1,4 +1,12 @@
-
+<div>
+  <label>
+    <input #noteName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(noteName.value); noteName.value=''">
+    add Note
+  </button>
+</div>
 <div class="container">
     <div *ngFor="let note of notes; index as noteId">
       <a routerLink="/detail/{{note.id}}" >
