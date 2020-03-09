@@ -3,19 +3,19 @@
     <input #noteName class="note-desc" />
     <input #noteColor value="red" class="note-desc"/>
     <input #noteDescription  value="desc" class="note-desc"/>
-    
   </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(noteName.value,noteColor.value,noteDescription.value); noteName.value='';noteColor.value='';" class="add-btn">
+  <button (click)="add(noteName.value,noteColor.value,noteDescription.value); noteName.value='';noteColor.value='';" class="add-btn" title="Add Note">
     +
   </button>
 </div>
 <div class="container">
     <div *ngFor="let note of notes; index as noteId">
-      <a routerLink="/detail/{{note.id}}" >
-      <div class="col-md-4 col-xs-6 col-sm-4 col-lg-3">
+      <a routerLink="/detail/{{note.id}}"  class="">
+      <div class="parent-card col-md-4 col-xs-6 col-sm-4 col-lg-3">
         <div class="notes-div" [ngStyle]="{'background-color': note.color}">
-          <h4>{{note.name}}</h4>
+          <div class="intro-heading">
+            <h4>{{note.name}}</h4>
+          </div>
           <div class="intro">{{note.description}}</div>
         </div>
       </div>
