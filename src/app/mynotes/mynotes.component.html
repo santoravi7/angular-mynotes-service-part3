@@ -1,0 +1,13 @@
+
+<div class="container">
+    <div *ngFor="let note of notes; index as noteId">
+      <a routerLink="/detail/{{note.id}}" >
+      <div class="col-md-4 col-xs-6 col-sm-4 col-lg-3">
+        <div class="notes-div" [ngStyle]="{'background-color': note.color}">
+          <h4>{{note.name}}</h4>
+          <div class="intro">{{note.description}}</div>
+        </div>
+      </div>
+      </a>
+    </div>
+</div>

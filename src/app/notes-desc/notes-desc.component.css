@@ -1,0 +1,11 @@
+.note-heading{
+  margin-top: 20px;
+  font-family: lato;
+  font-weight: 700;
+}
+
+.desc{
+  min-height: 450px;
+  padding: 20px 0px;
+  text-transform: capitalize;
+}

@@ -1,0 +1,18 @@
+.notes-div{
+    margin-top: 20px;
+    background: #efefef;
+    min-height: 270px;    
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 12px !important;
+}
+
+.intro{
+  min-height: 100px;
+  margin-top: 10px;
+  padding: 10px 0px;
+  text-align: left; 
+  font-weight: 400;
+  font-family: lato;
+  font-size: 12px;
+}
