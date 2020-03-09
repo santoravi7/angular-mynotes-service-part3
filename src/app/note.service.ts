@@ -15,6 +15,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class NoteService {
 
   private notesUrl = "api/notes";
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   constructor(
     private http : HttpClient,
@@ -41,22 +45,39 @@ export class NoteService {
     return of(Notes.find(note => note.id === id));
   }
 
+  addNote (note: Notedata): Observable<Notedata> {
+    return this.http.post<Notedata>(this.notesUrl, note, this.httpOptions).pipe(
+      tap((newMote: Notedata) => this.log(`added Note w/ id=${newMote.id}`)),
+      catchError(this.handleError<Notedata>('addNote'))
+    );
+  }
+
+  deleteNote (note: Notedata | number): Observable<Notedata> {
+    const id = typeof note === 'number' ? note : note.id;
+    const url = `${this.notesUrl}/${id}`;
+
+    return this.http.delete<Notedata>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted note id=${id}`)),
+      catchError(this.handleError<Notedata>('deleteNote'))
+    );
+  }
+
   private log(message: string) {
     this.messageService.add(`NoteService: ${message}`);
   }
 
-    private handleError<T> (operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
 
-        // TODO: send the error to remote logging infrastructure
-        console.error(error); // log to console instead
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
 
-        // TODO: better job of transforming error for user consumption
-        this.log(`${operation} failed: ${error.message}`);
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
 
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
-      };
-    }
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
 }
