@@ -2,7 +2,7 @@
     <div>
       <div class="col-md-12 col-xs-12">
         <div *ngIf="note" >
-          <div class="note-heading">{{note.name}}</div>
+          <input class="note-heading" [(ngModel)]='note.name'/>
           <div class="desc">
               <textarea [(ngModel)]='note.description'></textarea>
               <div class="center">

@@ -32,11 +32,13 @@ export class MynotesComponent implements OnInit {
     this.noteService.getNotes()
         .subscribe(notes => this.notes = notes);
   }
-  
+  noteLen;
   add(name: string, color: string, description: string): void {
     
-    this.colorRandomVal = Math.floor(Math.random() * this.colors.length);  
-    name = name.trim();
+    this.colorRandomVal = Math.floor(Math.random() * this.colors.length); 
+    this.noteLen = this.notes.length+1;
+    name = "Note "+this.noteLen;
+    console.log("asdfa = "+name);
     color = this.colors[this.colorRandomVal].value;;
     description = description;
     console.log("desc - "+description)
