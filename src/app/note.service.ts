@@ -38,15 +38,22 @@ export class NoteService {
       );
   }
 
+  // getNote(id: number): Observable<Notedata> {
+  //   // TODO: send the message _after_ fetching the hero
+  //   console.log("This is noteService.getNote : "+id);
+  //   this.messageService.add(`NoteService: fetched note id=${id}`);
+  //   return of(Notes.find(note => note.id === id));
+  // }
+
   getNote(id: number): Observable<Notedata> {
-    // TODO: send the message _after_ fetching the hero
-    console.log("This is noteService.getNote : "+id);
-    this.messageService.add(`NoteService: fetched note id=${id}`);
-    return of(Notes.find(note => note.id === id));
+    const url = `${this.notesUrl}/${id}`;
+    return this.http.get<Notedata>(url).pipe(
+      tap(_ => this.log(`fetched Notedata id=${id}`)),
+      catchError(this.handleError<Notedata>(`Notedata id=${id}`))
+    );
   }
 
   addNote (note: Notedata): Observable<Notedata> {
-     console.log("this is service");
     return this.http.post<Notedata>(this.notesUrl, note, this.httpOptions).pipe(
       tap((newMote: Notedata) => this.log(`added Note w/ id=${newMote.id}`)),
       catchError(this.handleError<Notedata>('addNote'))
