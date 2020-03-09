@@ -22,11 +22,13 @@ export class MynotesComponent implements OnInit {
         .subscribe(notes => this.notes = notes);
   }
   
-  add(name: string): void {
+  add(name: string, color: string, description: string): void {
     name = name.trim();
-    console.log("this is add");
+    color = color;
+    description = description;
+    console.log("this is add"+color);
     if (!name) { return; }
-    this.noteService.addNote({ name } as Note)
+    this.noteService.addNote({ name,description,color } as Note)
       .subscribe(note => {
         this.notes.push(note);
       });
