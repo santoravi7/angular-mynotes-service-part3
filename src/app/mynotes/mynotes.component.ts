@@ -24,15 +24,16 @@ export class MynotesComponent implements OnInit {
   
   add(name: string): void {
     name = name.trim();
+    console.log("this is add");
     if (!name) { return; }
-    this.noteService.addHero({ name } as Note)
-      .subscribe(hero => {
-        this.notes.push(hero);
+    this.noteService.addNote({ name } as Note)
+      .subscribe(note => {
+        this.notes.push(note);
       });
   }
 
-  delete(hero: Note): void {
-    this.notes = this.notes.filter(h => h !== hero);
-    this.noteService.deleteHero(hero).subscribe();
+  delete(note: Note): void {
+    this.notes = this.notes.filter(n => n !== note);
+    this.noteService.deleteNote(note).subscribe();
   }
 }

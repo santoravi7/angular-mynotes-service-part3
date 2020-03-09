@@ -46,6 +46,7 @@ export class NoteService {
   }
 
   addNote (note: Notedata): Observable<Notedata> {
+     console.log("this is service");
     return this.http.post<Notedata>(this.notesUrl, note, this.httpOptions).pipe(
       tap((newMote: Notedata) => this.log(`added Note w/ id=${newMote.id}`)),
       catchError(this.handleError<Notedata>('addNote'))
